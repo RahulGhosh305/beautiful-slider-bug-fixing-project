@@ -113,6 +113,7 @@ const changeSlide = (index) => {
   items[index].style.display = "block"
 }
 
+// search by button
 searchBtn.addEventListener('click', function () {
   document.querySelector('.main').style.display = 'none';
   clearInterval(timer);
@@ -121,6 +122,21 @@ searchBtn.addEventListener('click', function () {
   sliders.length = 0;
 })
 
+// search by enter press key
+document.getElementById('search').addEventListener('keypress',function(event){
+  if(event.key == 'Enter'){
+    document.getElementById('search-btn').click();
+  }
+})
+
+// SLider by Button Click
 sliderBtn.addEventListener('click', function () {
   createSlider()
+})
+
+// Slider by Enter press key
+document.getElementById('duration').addEventListener('keypress',function(event){
+  if(event.key == 'Enter'){
+    document.getElementById('create-slider').click();
+  }
 })
