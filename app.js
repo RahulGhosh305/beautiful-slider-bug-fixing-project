@@ -41,13 +41,10 @@ const selectItem = (event, img) => {
   element.classList.toggle('added');
  
   let item = sliders.indexOf(img);
-  // console.log(item)
   if (item === -1) {
     sliders.push(img);
-    // console.log(sliders)
   } else {
-    // alert('Hey, Already added !')
-    sliders.pop(img)
+    sliders.splice(item, 1)
   }
 }
 var timer
