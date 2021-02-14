@@ -24,11 +24,12 @@ const showImages = (images) => {
     div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
     div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
     gallery.appendChild(div)
+    showSpinner(false);
   })
-
 }
 
 const getImages = (query) => {
+  showSpinner(true);
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
     .then(data => showImages(data.hits))
@@ -122,19 +123,30 @@ searchBtn.addEventListener('click', function () {
   sliders.length = 0;
 })
 
-// search by enter press key
+// search by Enter-press key
 document.getElementById('search').addEventListener('keypress',function(event){
   if(event.key == 'Enter'){
     document.getElementById('search-btn').click();
   }
 })
 
-// SLider by Button Click
+// Show Spinner Function
+const showSpinner = (isLoading) => {
+  const spinner = document.getElementById('spinner-loading');
+  if(isLoading === true){
+    spinner.classList.remove('spinner-load')
+  }
+  else{
+    spinner.classList.add('spinner-load')
+  }
+}
+
+// Create sLider picture by Button Click
 sliderBtn.addEventListener('click', function () {
   createSlider()
 })
 
-// Slider by Enter press key
+// Create slider picture by Enter-press key
 document.getElementById('duration').addEventListener('keypress',function(event){
   if(event.key == 'Enter'){
     document.getElementById('create-slider').click();
